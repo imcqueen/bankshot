@@ -1,21 +1,25 @@
 const axios = require('axios');
 
-const API_URL = 'https://api.bankshot.ai/v1/';
+const API_URL = 'http://localhost:3000/v1/';
 
 
-export default function Bankshot(api_key){
+module.exports = function Bankshot(api_key){
 
-    const bankshot = function(api_key){
+    var bankshot = function(api_key){
         this.BANKSHOT_API_KEY = api_key
     }
     bankshot.prototype = {
 
+        BANKSHOT_API_KEY: null,
+
         createApproval: async function(data){
-            const endpoint = "/"+data.orgId+"/approval/"+ data.workflowId+"/create";
-            this.callApiEndpoint(endpoint, {
+            const endpoint = ""+data.orgId+"/approval/"+ data.workflowId+"/create";
+            const resp = await this.callApiEndpoint(endpoint, {
                 context: data.context,
                 request_text: data.request_text
-            };
+            });
+
+            return resp;
         },
 
 
@@ -26,11 +30,14 @@ export default function Bankshot(api_key){
                         'x-bankshot-key': this.BANKSHOT_API_KEY
                     }
                 });
+                return response.data;
             }
             catch (error) {
                 console.error(error);
             }
         }
     }
+
+    return new bankshot(api_key);
 
 }
