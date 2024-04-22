@@ -8,11 +8,13 @@ The easiest way to get started is to install via npm.
 
 ``
     npm install bankshot
+
 ``
 
 ## Example Usage
 
 ``
+    
     const Bankshot = require('bankshot')
 
     const BS_API_KEY = 'YOUR_KEY_HERE' //generated from the Bankshot dashboard
@@ -31,4 +33,5 @@ The easiest way to get started is to install via npm.
     }).then((response)=>{
         console.log(response);
     })
+    
 ``
