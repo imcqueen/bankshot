@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const API_URL = 'http://localhost:3000/v1/';
+const API_URL = 'http://api.bankshot.ai/v1/';
 
 
 module.exports = function Bankshot(api_key){
